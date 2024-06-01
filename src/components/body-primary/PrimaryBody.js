@@ -58,7 +58,11 @@ export function PrimaryBody(props) {
   const [input_Url, setUrl] = useState("");
   const showProgress = props.showProgress;
   const navigate = useNavigate();
-
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      get_Prediction(input_Url, showProgress, navigate);
+    }
+  };
   return (
     <>
       <p className="font-light max-sm:mx-3 max-sm:text-xl sm:text-2xl md:text-4xl mt-8 text-center">
@@ -77,7 +81,7 @@ export function PrimaryBody(props) {
 
         <input type="text" placeholder="Enter website address or URL (eg- www.Tesla.com)" onChange={(event) => setUrl(event.target.value)}
         className="border-2 border-gray-600 rounded-sm text-xs min-[550px]:text-sm  md:text-lg  px-1 py-3 md:px-3 md:py-3 
-       mx-10 md:mx-3 min-[550px]:mx-20 md:w-[60%] lg:w-[50%] md:ml-[12%] lg:ml-[20%]"/>
+       mx-10 md:mx-3 min-[550px]:mx-20 md:w-[60%] lg:w-[50%] md:ml-[12%] lg:ml-[20%]" onKeyDown={handleKeyDown}/>
 
         <button
           onClick={() => get_Prediction(input_Url, showProgress, navigate)}
